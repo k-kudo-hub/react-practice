@@ -8,7 +8,6 @@ const onClickAdd = () => {
   // liタグ生成
   const li = document.createElement("li");
   li.className = "flex";
-  console.log(li);
 
   // pタグ生成
   const p  = document.createElement("p");
@@ -25,7 +24,9 @@ const onClickAdd = () => {
   const deleteButton = document.createElement("button");
   deleteButton.innerText = "削除";
   deleteButton.addEventListener("click", () => {
-    alert("delete...");
+    // 削除ボタンを押した際に親タグを削除
+    const deleteTarget = deleteButton.closest(".flex");
+    document.getElementById("incomplete_list").removeChild(deleteTarget);
   })
 
   div.appendChild(completeButton);

@@ -2,19 +2,23 @@
  * テキストボックスの値を取得し、フォームを初期化する。
  */
 const onClickAdd = () => {
+  // # 共通パーツの作成
+  // ## 入力値の取得
   const inputText = document.getElementById("add_text").value;
   document.getElementById("add_text").value = "";
 
-  // liタグ生成
+  // ## liタグ生成
   const li = document.createElement("li");
   li.className = "flex";
 
-  // pタグ生成
+  // ## pタグ生成
   const p  = document.createElement("p");
   p.innerText = inputText;
 
-  // buttonタグ生成
+  // # buttonパーツの作成
   const div = document.createElement("div");
+
+  // ## 完了ボタンの作成
   const completeButton = document.createElement("button");
   completeButton.innerText = "完了";
   completeButton.addEventListener("click", () => {
@@ -23,25 +27,26 @@ const onClickAdd = () => {
     const destination = document.getElementById("complete_list");
 
     // 新しいノードを作成
-    const returnItem = document.createElement("li");
-    returnItem.className = "flex";
+    const backItem = document.createElement("li");
+    backItem.className = "flex";
 
-    const returnButton = document.createElement("button");
-    returnButton.innerText = "戻す";
+    const backButton = document.createElement("button");
+    backButton.innerText = "戻す";
 
     const returnText = document.createElement("p");
     returnText.innerText = completeTarget.firstElementChild.textContent;
 
-    returnItem.appendChild(returnText);
-    returnItem.appendChild(returnButton);
+    backItem.appendChild(returnText);
+    backItem.appendChild(backButton);
 
     // 新しいノードを移動先に挿入
-    destination.appendChild(returnItem);
+    destination.appendChild(backItem);
 
     // 対象ノードを削除
     deleteTodo(completeTarget);
   })
 
+  // ## 削除ボタンの作成
   const deleteButton = document.createElement("button");
   deleteButton.innerText = "削除";
   deleteButton.addEventListener("click", () => {

@@ -35,6 +35,15 @@ export const App = () => {
     setCompleteTodo(newCompleteTodo);
   }
 
+  const onClickBack = (index) => {
+    const newCompleteTodo = [...completeTodo];
+    newCompleteTodo.splice(index, 1);
+
+    const newIncompleteTodo = [...incompleteTodo, completeTodo[index]];
+    setCompleteTodo(newCompleteTodo);
+    setIncompleteTodo(newIncompleteTodo);
+  }
+
   return (
     <>
       <div>
@@ -67,7 +76,7 @@ export const App = () => {
             return (
               <li key={item} className="flex">
                 <p>{item}</p>
-                <button>戻す</button>
+                <button onClick={() => onClickBack(index)}>戻す</button>
               </li>
             );
           }) }

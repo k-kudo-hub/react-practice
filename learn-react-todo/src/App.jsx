@@ -26,6 +26,15 @@ export const App = () => {
     setIncompleteTodo(newTodo);
   }
 
+  const onClickComplete = (index) => {
+    const newIncompleteTodo = [...incompleteTodo];
+    newIncompleteTodo.splice(index, 1);
+
+    const newCompleteTodo = [...completeTodo, incompleteTodo[index]];
+    setIncompleteTodo(newIncompleteTodo);
+    setCompleteTodo(newCompleteTodo);
+  }
+
   return (
     <>
       <div>
@@ -44,7 +53,7 @@ export const App = () => {
             return (
               <li key={item} className="flex">
                 <p>{item}</p>
-                <button>完了</button>
+                <button onClick={() => onClickComplete(index)}>完了</button>
                 <button onClick={() => onClickDelete(index)}>削除</button>
               </li>
             );

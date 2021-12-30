@@ -3,13 +3,8 @@ import "./App.css";
 
 export const App = () => {
   const [ todoText, setTodoText ] = useState("");
-  const [ incompleteTodo, setIncompleteTodo ] = useState([
-    'Item1',
-    'Item2'
-  ]);
-  const [ completeTodo, setCompleteTodo ] = useState([
-    'Item3'
-  ]);
+  const [ incompleteTodo, setIncompleteTodo ] = useState([]);
+  const [ completeTodo, setCompleteTodo ] = useState([]);
 
   const onChangeTodoText = (e) => setTodoText(e.target.value);
 

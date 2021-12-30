@@ -20,6 +20,12 @@ export const App = () => {
     setTodoText("");
   }
 
+  const onClickDelete = (index) => {
+    const newTodo = [...incompleteTodo];
+    newTodo.splice(index, 1);
+    setIncompleteTodo(newTodo);
+  }
+
   return (
     <>
       <div>
@@ -34,12 +40,12 @@ export const App = () => {
       <div>
         <p>未完了のTODO</p>
         <ul>
-          { incompleteTodo.map((item) => {
+          { incompleteTodo.map((item, index) => {
             return (
               <li key={item} className="flex">
                 <p>{item}</p>
                 <button>完了</button>
-                <button>削除</button>
+                <button onClick={() => onClickDelete(index)}>削除</button>
               </li>
             );
           }) }
@@ -48,7 +54,7 @@ export const App = () => {
       <div>
         <p>完了済みのTODO</p>
         <ul>
-          { completeTodo.map((item) => {
+          { completeTodo.map((item, index) => {
             return (
               <li key={item} className="flex">
                 <p>{item}</p>

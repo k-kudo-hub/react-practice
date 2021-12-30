@@ -6,6 +6,14 @@ const App = () => {
   return (
     <>
       <h1 style={{ color: 'red' }}>Learn React</h1>
+      <ColorfulMessage 
+        color="blue"
+        message="お元気ですか？"
+      />
+      <ColorfulMessage
+        color="pink"
+        message="元気です"
+      />
     </>
   );
 }

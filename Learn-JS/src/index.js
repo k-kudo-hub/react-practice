@@ -3,7 +3,7 @@
  */
 const onClickAdd = () => {
   const inputText = document.getElementById("add_text").value;
-  inputText.value = "";
+  document.getElementById("add_text").value = "";
 
   // liタグ生成
   const li = document.createElement("li");
@@ -18,15 +18,35 @@ const onClickAdd = () => {
   const completeButton = document.createElement("button");
   completeButton.innerText = "完了";
   completeButton.addEventListener("click", () => {
-    alert("done!");
+    // 対象ノードと移動先を設定
+    const completeTarget = completeButton.closest(".flex");
+    const destination = document.getElementById("complete_list");
+
+    // 新しいノードを作成
+    const returnItem = document.createElement("li");
+    returnItem.className = "flex";
+
+    const returnButton = document.createElement("button");
+    returnButton.innerText = "戻す";
+
+    const returnText = document.createElement("p");
+    returnText.innerText = completeTarget.firstElementChild.textContent;
+
+    returnItem.appendChild(returnText);
+    returnItem.appendChild(returnButton);
+
+    // 新しいノードを移動先に挿入
+    destination.appendChild(returnItem);
+
+    // 対象ノードを削除
+    deleteTodo(completeTarget);
   })
 
   const deleteButton = document.createElement("button");
   deleteButton.innerText = "削除";
   deleteButton.addEventListener("click", () => {
     // 削除ボタンを押した際に親タグを削除
-    const deleteTarget = deleteButton.closest(".flex");
-    document.getElementById("incomplete_list").removeChild(deleteTarget);
+    deleteTodo(deleteButton.closest(".flex"));
   })
 
   div.appendChild(completeButton);
@@ -39,6 +59,10 @@ const onClickAdd = () => {
   // 未完了リストに追加
   const incompleteList = document.getElementById("incomplete_list");
   incompleteList.appendChild(li);
+}
+
+const deleteTodo = (target) => {
+  document.getElementById("incomplete_list").removeChild(target);
 }
 
 document
